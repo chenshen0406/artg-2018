@@ -39,8 +39,9 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 	Hint: use d3.max()
 	YOUR CODE HERE:
 	***/
-	console.log('There are' + trips.length + 'tirps.');
-	console.log('There are ${trips.length} trips.');
+	console.log('There are ' + trips.length + ' tirps.');
+	// console.log('There are ${trips.length} trips.');
+
 
 	const longestDuration = d3.max(trips, function(d){ return d.duration});
 	const longestDuration2 = d3.max(trips.map(function(d){return d.duration})); //MODIFY THIS
