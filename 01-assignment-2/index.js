@@ -138,6 +138,16 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 	  .rollup(function(v) { return v.length; })
 	  .entries(trips);
 	console.log(JSON.stringify(station0Count));
+
+	const departureVolumeByStation0 = station0Count
+		.map(function(d){
+			return{
+				key:d.key,
+				values:d.values.length
+			};
+		});
+		console.log(departureVolumeByStation0);
+
 	/***
 	5.0 BONUS Question
 	Can you answer 2.1 and 2.2 without using d3's built-in max and min methods?
