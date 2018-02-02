@@ -116,6 +116,7 @@ const h = d3.select('.module').node().clientHeight;
 const _w = w - margin.l - margin.r;
 const _h = h - margin.t - margin.b;
 
+
 //Scale
 const scaleX = d3.scaleLinear().domain([0,maxVolume]).range([0,_w]);
 
