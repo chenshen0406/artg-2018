@@ -163,5 +163,3 @@ function Histogram(_){
 }
 
 export default Histogram;
-
-

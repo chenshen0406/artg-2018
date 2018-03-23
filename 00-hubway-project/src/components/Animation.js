@@ -28,6 +28,8 @@ function Animation(_){
 
 	let ctx;
 
+	const _dispatch = d3.dispatch('selection:station');
+
 	function exports(trips, stations){
 
 		//_ ==> <div class='main'>
@@ -75,7 +77,8 @@ function Animation(_){
 			.attr('height',_h)
 			.style('position','absolute')
 			.style('top',0)
-			.style('left',0);
+			.style('left',0)
+			.style('pointer-events','none');
 		ctx = canvas.node().getContext('2d');
 
 		//Draw the stations to <svg>
@@ -92,7 +95,10 @@ function Animation(_){
 			.attr('dy','3px');
 		stationsEnter
 			.merge(stationsNodes)
-			.attr('transform', d => `translate(${d.x}, ${d.y})`);
+			.attr('transform', d => `translate(${d.x}, ${d.y})`)
+			.on('mouseenter',function(d){
+					_dispatch.call('selection:station',this, d);
+			});
 
 		//Initialize/update and compute a force layout from stationData
 		radial
@@ -184,6 +190,17 @@ function Animation(_){
 		_t = new Date(_t.valueOf() + 18000);
 		requestAnimationFrame(renderFrame);
 
+	}
+
+	exports.time = function(_){
+		if(typeof _t == 'undefined') return _t;
+		_t = _;
+		return this;
+	}
+
+	exports.on = function(eventType,cb){
+		_dispatch.on(eventType,cb);
+		return this;
 	}
 
 	return exports;

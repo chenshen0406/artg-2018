@@ -7,7 +7,7 @@ console.log('Week 5 Assignment 1: Introduction to Promises');
 ***/
 //Just observe this part
 
-//A Promise object is literally a "promise" of a future value. When created, a Promise object is "pending", 
+//A Promise object is literally a "promise" of a future value. When created, a Promise object is "pending",
 //but once the future value is available, the Promise object is "resolved"
 //otherwise, if there is some error, the Promise object is "rejected"
 
@@ -21,16 +21,23 @@ const somePromise = new Promise(function(resolve, reject){
 	//Code here will run immediately
 	//How do we change the "resolved" value?
 	/*** YOUR CODE HERE ***/
-	resolve(5);
+	resolve(6);
 	/*** YOUR CODE HERE ***/
 
 }); //Note that this Promise will resolve a value of 5, and will never reject
 console.log(somePromise);
 
+const someOtherPromise = new Promise(function(resolve, reject){
+	//resolve ==> function
+	//reject ==> function
+	//some kind of time consuming process will occur
+	resolve()
+})
+
 //5.1.2 To access the Promised, "resolved" value, use Promise.then()
 somePromise.then(function(res){
 	console.log('The resolution value is ' + res);
-}); 
+});
 
 /***
 	5.2 Construct your own Promise
@@ -85,11 +92,4 @@ const dataPromise = new Promise((resolve, reject) => {
 	Next we'll look at some of the features of Promises that makes them more powerful, like chaining and managing multiple async processes
 ***/
 
-
-
-
-
-
-
-
-
+//dataset1.csv

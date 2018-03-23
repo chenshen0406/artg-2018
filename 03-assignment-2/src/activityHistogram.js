@@ -1,6 +1,19 @@
 import * as d3 from 'd3';
 
 export default function activityHistogram(data){
+	console.log(data);
+
+
+	//"data" -->
+	// {
+	// 	key:'47'
+	// 	value:[
+	// 		{trip},
+	// 		{trip},
+	// 		{trip},
+	// 		...
+	// 	]
+	// }
 
 	//Need to append a the proper DOM scaffolding
 	const width = this.clientWidth; //What is "this"? <div>
@@ -11,7 +24,7 @@ export default function activityHistogram(data){
 
 	const svg = d3.select(this)
 		.selectAll('svg')
-		.data([1]); //What's going on here? Joins the specified array of data with every single svg.
+		.data([1]); //What's going on here? make sure there is just one svg. every time there is just one.
 
 	const svgEnter = svg.enter().append('svg')
 		.attr('width',width)
@@ -27,7 +40,9 @@ export default function activityHistogram(data){
 	const histogram = d3.histogram()
 		.value(d => d.time_of_day0)
 		.thresholds(d3.range(0,24,.25));
-	const tripsByQuarterHour = histogram(data.values)
+	const tripsByQuarterHour = histogram(data.values)//in assignment 1, there is
+	//just data. As now is different data, this data inculdes key(what station0),
+	//value(trip),but nowwe just need trip.
 		.map(d => {
 			return {
 				x0:d.x0, //left bound of the bin; 18.25 => 18:15

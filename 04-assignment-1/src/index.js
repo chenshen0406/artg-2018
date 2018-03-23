@@ -26,6 +26,6 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 		.style('height','180px')
 		.style('float','left');
 	stationNodes.merge(stationNodesEnter)
-		.each(timeline); 
+		.each(timeline);
 
 });

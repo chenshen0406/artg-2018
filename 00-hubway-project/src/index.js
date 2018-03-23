@@ -47,3 +47,11 @@ Promise.all([
 		animation(trips, stations);
 
 	});
+
+	timeline.on('mousemove:x', x => {
+		animation.time(new Date(x));
+	});
+
+	animation.on('selection:station', station => {
+		console.log(station);
+	});
