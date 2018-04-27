@@ -96,10 +96,10 @@ function redraw(count){
 
 			//update
 			//we "update" existing elements
-			// countryNodes // update selection of <g> element
-			// 	.transition()
-			// 	.duration(1000)
-			// 	.attr('transform',(d,i) => `translate(${i*width/4},${height/2})`);
+			countryNodes // update selection of <g> element
+				.transition()
+				.duration(1000)
+				.attr('transform',(d,i) => `translate(${i*width/4},${height/2})`);
 			countryNodes
 				.select('circle')
 				.transition()

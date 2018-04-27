@@ -14,8 +14,10 @@ const activityHistogramMultiple = Histogram();
 const durationHistogramMain = Histogram();
 
 activityHistogramMain
-	.maxVolume(3000)
-	.margin({t:20,r:100,b:50,l:100});
+			.maxVolume(5000)
+			.margin({ t:20, r:50, b:50, l:50 })
+			.ticksY(2)
+			.defaultColor("rgb(100,100,10)");
 
 
 
@@ -36,6 +38,8 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 		.key(function(d){ return d.station0 })
 		.entries(trips);
 
+		console.log(tripsByStation0);
+	//create multiple <div>, give each div one nest data
 	const stationNodes = d3.select('#timeline-multiple')
 		.selectAll('.station-node')
 		.data(tripsByStation0);
@@ -45,6 +49,7 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 		.style('width','300px')
 		.style('height','180px')
 		.style('float','left');
+	//divide each draw function to each div
 	stationNodes.merge(stationNodesEnter)
 		.each(activityHistogramMultiple);
 

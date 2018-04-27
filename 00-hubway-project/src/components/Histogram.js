@@ -24,6 +24,7 @@ function Histogram(_){
 		const margin = {t:20,r:20,b:20,l:30};
 		const w = width - margin.l - margin.r;
 		const h = height - margin.t - margin.b;
+		console.log(root);
 
 		const svg = d3.select(root)
 			.classed('histogram',true)

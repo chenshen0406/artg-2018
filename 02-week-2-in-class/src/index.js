@@ -83,6 +83,7 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 
 	//Data transformation, discovery, and mining
   console.log(trips);
+  console.log(typeof(trips));
 
   const tripsByStation0 = d3.nest()
     .key(function(d){return d.station0}) //find how many trips from station0 and group them.

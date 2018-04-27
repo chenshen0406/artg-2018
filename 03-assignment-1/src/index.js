@@ -100,8 +100,6 @@ function activityHistogram(data){
 
 
 
-	/*** YOUR CODE HERE ***/
-
 	//Axis
 	const axisXNode = d3.select(this)
 		.selectAll('.axis-x')//selection of size 0

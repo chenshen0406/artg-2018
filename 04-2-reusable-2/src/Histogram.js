@@ -35,6 +35,7 @@ function Histogram(_){
 		const histogram = d3.histogram()
 			.value(d => d.time_of_day0)
 			.thresholds(d3.range(0,24,.25));
+			console.log(data);
 		const tripsByQuarterHour = histogram(data.values)
 			.map(d => {
 				return {
@@ -71,6 +72,7 @@ function Histogram(_){
 		const binsUpdate = plot
 			.selectAll('.bin')
 			.data(tripsByQuarterHour);
+console.log(tripsByQuarterHour);
 
 		//Enter
 		const binsEnter = binsUpdate.enter()

@@ -28,13 +28,14 @@ function Animation(_){
 
 	let ctx;
 
-	const _dispatch = d3.dispatch('selection:station');
+	const _dispatch = d3.dispatch('selection:station','unselection:station');
 
 	function exports(trips, stations){
 
 		//_ ==> <div class='main'>
 		_w = _.clientWidth;
 		_h = _.clientHeight;
+		console.log(_h);
 
 		projection.translate([_w/2, _h/2]);
 
@@ -52,8 +53,10 @@ function Animation(_){
 
 		locationLookup = d3.map(stationData, d => d.id_short);
 
+
 		//Append DOM elements
 		const root = d3.select(_);
+ 		console.log(root);
 
 		let svg = root
 			.selectAll('.animation-layer-svg')
@@ -78,12 +81,15 @@ function Animation(_){
 			.style('position','absolute')
 			.style('top',0)
 			.style('left',0)
-			.style('pointer-events','none');
+			.style('pointer-events','none');//!!let users won't click the whole canvas;
 		ctx = canvas.node().getContext('2d');
 
 		//Draw the stations to <svg>
 		const stationsNodes = svg.selectAll('.station')
 			.data(stationData, d => d.id_short);
+
+
+			console.log(stationsNodes);
 		const stationsEnter = stationsNodes.enter()
 			.append('g')
 			.attr('class','station');
@@ -96,15 +102,19 @@ function Animation(_){
 		stationsEnter
 			.merge(stationsNodes)
 			.attr('transform', d => `translate(${d.x}, ${d.y})`)
-			.on('mouseenter',function(d){
-					_dispatch.call('selection:station',this, d);
+			.on('mouseenter',function(d,i){
+					_dispatch.call('selection:station',null, d);
+			})
+			.on('mouseleave',function(d,i){
+					_dispatch.call('unselection:station',null);
 			});
 
 		//Initialize/update and compute a force layout from stationData
 		radial
 			.x(_w/2)
 			.y(_h/2)
-			.radius(Math.min(_w,_h)/2 - 50);
+			.radius(Math.min(_w,_h)/2 - 5);
+			console.log(radial);
 		force //the simulation
 			.force('collide',collide) //
 			.force('radial',radial)

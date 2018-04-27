@@ -54,4 +54,7 @@ Promise.all([
 
 	animation.on('selection:station', station => {
 		console.log(station);
+	})
+	.on('unselection:station',station =>{
+		console.log('station is selected');
 	});

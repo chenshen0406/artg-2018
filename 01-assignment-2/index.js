@@ -17,12 +17,12 @@ function parse(d){
 	}
 	**/
 	return {
-		station0:d.strt_statn,
-		station1:d.end_statn,
 		t0:new Date(d.start_date),
 		t1:new Date(d.end_date),
-		bike_nr:d.bike_nr,
+		station0:d.strt_statn,
+		station1:d.end_statn,
 		duration: +d.duration,
+		bike_nr:d.bike_nr,
 		subsc_type:d.subsc_type
 	}; //MODIFY THIS
 }
@@ -154,6 +154,6 @@ d3.csv('./data/hubway_trips_reduced.csv', parse, function(err,trips){
 	Hint: Javascript has a built-in Math.max(...) function
 	YOUR CODE HERE:
 	***/
-
+	const max = Math.max(...tripVolumeBystation0.map(function(d){return d.tripVolume}));
 
 });

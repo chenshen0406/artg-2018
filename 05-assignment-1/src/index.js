@@ -46,14 +46,19 @@ somePromise.then(function(res){
 
 /*** YOUR CODE HERE ***/
 
-
+const helloPromise = new Promise(function(resolve, reject){
+	resolve("Hello world");
+});
+helloPromise.then(d => console.log('Promise = \"' + d + '\"' ));
 
 /*** YOUR CODE HERE ***/
 
 //There is shortcut to creating Promises that resolve and reject *immediately*
 //Just observe this
 const resolveHelloWorld = Promise.resolve('Hello world');
-const rejectHelloWorld = Promise.reject(new Error("Hello world"));
+console.log(resolveHelloWorld);
+const rejectHelloWorld = Promise.reject(new Error('Hello world'));
+console.log(rejectHelloWorld);
 
 /***
 	5.3 Access resolve and reject values
@@ -61,9 +66,8 @@ const rejectHelloWorld = Promise.reject(new Error("Hello world"));
 //How do you access the resolved "Hello world" and rejected error from above? Please console.log them out
 
 /*** YOUR CODE HERE ***/
-
-
-
+resolveHelloWorld.then(d => console.log(d)); // then defines what to do when the promise is resolved
+rejectHelloWorld.catch(d => console.log(d)); // catch defines what to do when the promise is rejected (some error)
 /*** YOUR CODE HERE ***/
 
 /***
@@ -87,9 +91,9 @@ const dataPromise = new Promise((resolve, reject) => {
 });
 
 //What are the resolved value and rejection error of "dataPromise"?
-
+dataPromise.then(d => console.log(d)); // array of objects to the dataset loaded with d3.csv.
 /***
 	Next we'll look at some of the features of Promises that makes them more powerful, like chaining and managing multiple async processes
 ***/
-
+dataPromise.catch(d => console.log(d)); 
 //dataset1.csv

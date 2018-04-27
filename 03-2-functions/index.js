@@ -2,57 +2,57 @@
 // 	1 Function scope
 // */
 // //Carefully consider the scope of each of the variables
-// const apple = 'fuji';
-//
-// function fruit(){
-// 	const orange = 'navel';
-//
-// 	console.log(apple); //will this work? why?
-// };
-//
-// console.log(apple); //will this work? why?
-// //console.log(orange); //will this work? why?
-//
-//
-// let b = 1;
-//
-// function add (a){
-// 	const temp = a + b;
-// 	b = b + 1;
-// 	return temp;
-// }
-//
-//
-//
+const apple = 'fuji';
+
+function fruit(){
+	const orange = 'navel';
+
+	console.log(apple); //will this work? why?
+};
+
+console.log(apple); //will this work? why?
+//console.log(orange); //will this work? why?
+
+
+let b = 1;
+
+function add (a){
+	const temp = a + b;
+	b = b + 1;
+	return temp;
+}
+
+
+
 // /*
 // 	2 "this" context of functions
 // */
 // //2.1: a regular function
-// function foo(){
-// 	console.log(this); //window object
-// }
-// foo();
-//
+function foo(){
+	console.log(this); //window object
+}
+foo();
+
 // //2.2: function attached to an object
-// const someObj = {
-// 	prop1: 'some value',
-// 	foo: function(){
-// 		console.log(this);
-// 	}
-// }
-// someObj.foo();
-//
+const someObj = {
+	prop1: 'some value',
+	foo: function(){
+		console.log(this);
+	}
+}
+someObj.foo();
+
 // //2.3: a twist on 2.2
-// const bar = someObj.foo;
-// console.group('---2.3---')
-// bar();
-// console.groupEnd();
-//
-//
+const bar = someObj.foo;
+console.group('---2.3---')
+bar();
+console.groupEnd();
+
+
 // //2.4
 // //We can use function.prototype.bind to copy an existing function and arbitrarily assign its "this" context
-// const baz = someObj.foo.bind('I am some arbitrary string');
-// baz();
+const baz = someObj.foo.bind('I am some arbitrary string');
+baz();
 
 //2.5
 //One frequent use of "this" in relation to d3 is when we use the selection.each function
